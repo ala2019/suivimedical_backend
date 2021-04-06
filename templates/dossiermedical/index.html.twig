@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dossiermedical index{% endblock %}
+
+{% block body %}
+    <h1>Dossiermedical index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Num_dossier</th>
+                <th>Nom_patient</th>
+                <th>Prenom_patient</th>
+                <th>Date_naissance</th>
+                <th>Age</th>
+                <th>Sexe</th>
+                <th>Poids</th>
+                <th>Type_diabete</th>
+                <th>Deligation_residence</th>
+                <th>Email</th>
+                <th>Telephone1</th>
+                <th>Telephone2</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dossiermedical in dossiermedicals %}
+            <tr>
+                <td>{{ dossiermedical.id }}</td>
+                <td>{{ dossiermedical.NumDossier }}</td>
+                <td>{{ dossiermedical.NomPatient }}</td>
+                <td>{{ dossiermedical.PrenomPatient }}</td>
+                <td>{{ dossiermedical.DateNaissance ? dossiermedical.DateNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ dossiermedical.Age }}</td>
+                <td>{{ dossiermedical.Sexe }}</td>
+                <td>{{ dossiermedical.Poids }}</td>
+                <td>{{ dossiermedical.TypeDiabete }}</td>
+                <td>{{ dossiermedical.DeligationResidence }}</td>
+                <td>{{ dossiermedical.Email }}</td>
+                <td>{{ dossiermedical.Telephone1 }}</td>
+                <td>{{ dossiermedical.Telephone2 }}</td>
+                <td>
+                    <a href="{{ path('dossiermedical_show', {'id': dossiermedical.id}) }}">show</a>
+                    <a href="{{ path('dossiermedical_edit', {'id': dossiermedical.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('dossiermedical_new') }}">Create new</a>
+{% endblock %}

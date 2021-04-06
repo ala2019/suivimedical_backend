@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dossiermedical{% endblock %}
+
+{% block body %}
+    <h1>Dossiermedical</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ dossiermedical.id }}</td>
+            </tr>
+            <tr>
+                <th>Num_dossier</th>
+                <td>{{ dossiermedical.NumDossier }}</td>
+            </tr>
+            <tr>
+                <th>Nom_patient</th>
+                <td>{{ dossiermedical.NomPatient }}</td>
+            </tr>
+            <tr>
+                <th>Prenom_patient</th>
+                <td>{{ dossiermedical.PrenomPatient }}</td>
+            </tr>
+            <tr>
+                <th>Date_naissance</th>
+                <td>{{ dossiermedical.DateNaissance ? dossiermedical.DateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ dossiermedical.Age }}</td>
+            </tr>
+            <tr>
+                <th>Sexe</th>
+                <td>{{ dossiermedical.Sexe }}</td>
+            </tr>
+            <tr>
+                <th>Poids</th>
+                <td>{{ dossiermedical.Poids }}</td>
+            </tr>
+            <tr>
+                <th>Type_diabéte</th>
+                <td>{{ dossiermedical.TypeDiabéte }}</td>
+            </tr>
+            <tr>
+                <th>Déligation_résidence</th>
+                <td>{{ dossiermedical.DéligationRésidence }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ dossiermedical.Email }}</td>
+            </tr>
+            <tr>
+                <th>Telephone1</th>
+                <td>{{ dossiermedical.Telephone1 }}</td>
+            </tr>
+            <tr>
+                <th>Telephone2</th>
+                <td>{{ dossiermedical.Telephone2 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('dossiermedical_index') }}">back to list</a>
+
+    <a href="{{ path('dossiermedical_edit', {'id': dossiermedical.id}) }}">edit</a>
+
+    {{ include('dossiermedical/_delete_form.html.twig') }}
+{% endblock %}
