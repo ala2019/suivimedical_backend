@@ -83,6 +83,16 @@ class Dossiermedical
      */
     private $Telephone2;
 
+    /**
+     * @ORM\OneToMany(targetEntity=AnalyseType1::class, mappedBy="dossiermedical")
+     */
+    private $AnalyseType1;
+
+    public function __construct()
+    {
+        $this->AnalyseType1 = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -228,6 +238,36 @@ class Dossiermedical
     public function setTelephone2(int $Telephone2): self
     {
         $this->Telephone2 = $Telephone2;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AnalyseType1[]
+     */
+    public function getAnalyseType1(): Collection
+    {
+        return $this->AnalyseType1;
+    }
+
+    public function addAnalyseType1(AnalyseType1 $analyseType1): self
+    {
+        if (!$this->AnalyseType1->contains($analyseType1)) {
+            $this->AnalyseType1[] = $analyseType1;
+            $analyseType1->setDossiermedical($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnalyseType1(AnalyseType1 $analyseType1): self
+    {
+        if ($this->AnalyseType1->removeElement($analyseType1)) {
+            // set the owning side to null (unless already changed)
+            if ($analyseType1->getDossiermedical() === $this) {
+                $analyseType1->setDossiermedical(null);
+            }
+        }
 
         return $this;
     }
