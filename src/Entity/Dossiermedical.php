@@ -83,6 +83,23 @@ class Dossiermedical
      */
     private $Telephone2;
 
+    /**
+     * @ORM\OneToMany(targetEntity=AnalyseType1::class, mappedBy="dossiermedical")
+     */
+    private $AnalyseType1;
+
+    /**
+     * @ORM\OneToMany(targetEntity=AnalyseType2::class, mappedBy="dossiermedical")
+     */
+    private $AnalyseType2;
+
+    public function __construct()
+    {
+        $this->AnalyseType1 = new ArrayCollection();
+        $this->AnalyseType2 = new ArrayCollection();
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -231,4 +248,64 @@ class Dossiermedical
 
         return $this;
     }
+
+    /**
+     * @return Collection|AnalyseType1[]
+     */
+    public function getAnalyseType1(): Collection
+    {
+        return $this->AnalyseType1;
+    }
+
+    public function addAnalyseType1(AnalyseType1 $analyseType1): self
+    {
+        if (!$this->AnalyseType1->contains($analyseType1)) {
+            $this->AnalyseType1[] = $analyseType1;
+            $analyseType1->setDossiermedical($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnalyseType1(AnalyseType1 $analyseType1): self
+    {
+        if ($this->AnalyseType1->removeElement($analyseType1)) {
+            // set the owning side to null (unless already changed)
+            if ($analyseType1->getDossiermedical() === $this) {
+                $analyseType1->setDossiermedical(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AnalyseType2[]
+     */
+    public function getAnalyseType2(): Collection
+    {
+        return $this->AnalyseType2;
+    }
+
+    public function addAnalyseType2(AnalyseType2 $analyseType2): self
+    {
+        if (!$this->AnalyseType2->contains($analyseType2)) {
+            $this->AnalyseType2[] = $analyseType2;
+            $analyseType2->setDossiermedical($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnalyseType2(AnalyseType2 $analyseType2): self
+    {
+        if ($this->AnalyseType2->removeElement($analyseType2)) {
+            // set the owning side to null (unless already changed)
+            if ($analyseType2->getDossiermedical() === $this) {
+                $analyseType2->setDossiermedical(null);
+            }
+        }
+
+        return $this;
+    }    
 }
