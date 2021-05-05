@@ -92,11 +92,11 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
+       if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
-        }
+        } 
 
-         return new RedirectResponse($this->urlGenerator->generate('dossiermedical_index'));
+         return new RedirectResponse($this->urlGenerator->generate('admin'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

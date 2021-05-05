@@ -1,18 +1,17 @@
 <?php
 
 namespace App\Entity;
-use ApiPlatform\Core\Annotation\ApiResource;
+
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;;
-/**
- * @ApiResource()
- * @ORM\Entity(repositoryClass=UserRepository::class)
- */
 
+/**
+ * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Table(name="`user`")
+ * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
+ */
 class User implements UserInterface
 {
     /**
@@ -44,7 +43,7 @@ class User implements UserInterface
     }
 
     /**
-     * A visual identifier that represents this user.
+     * A visual     identifier that represents this user.
      *
      * @see UserInterface
      */

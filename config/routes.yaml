@@ -2,3 +2,6 @@ api_platform:
     resource: .
     type: api_platform
     prefix: /ws
+authentication_token:
+    path: /authentication_token
+    methods: ['POST']
